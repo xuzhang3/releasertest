@@ -25,4 +25,4 @@ changelog:
 release:
   github:
     owner: xuzhang3
-    name: gorelease-TTTT
+    name: releasertest
