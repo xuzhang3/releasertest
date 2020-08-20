@@ -16,24 +16,25 @@ variables:
   modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)' # Path to the module's code
 
 steps:
-- task: GoTool@0
+
+  - task: GoTool@0
     displayName: 'Install correct version of Go'
     inputs:
       version: $(goVersion)
       GOPATH: '$(Pipeline.Workspace)/gopath'
       GOBIN:  '$(GOPATH)/bin'
 
-- bash:
-    #!/usr/bin/env bash
-    go version
-    echo "install path" 
-    pwd
-    curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh | sh
-    
-  displayName: "Install goreleaser"
+  - bash:
+      #!/usr/bin/env bash
+      go version
+      echo "install path" 
+      pwd
+      curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh | sh
+      
+    displayName: "Install goreleaser"
 
-- bash: 
-    #!/usr/bin/env bash
-    cd  "$BUILD_SOURCESDIRECTORY"
-    ../bin/goreleaser
-  displayName: "build release package"
+  - bash: 
+      #!/usr/bin/env bash
+      cd  "$BUILD_SOURCESDIRECTORY"
+      ../bin/goreleaser
+    displayName: "build release package"
