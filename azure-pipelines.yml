@@ -25,7 +25,7 @@ steps:
       GOPATH: '$(Pipeline.Workspace)/gopath'
       GOBIN:  '$(GOPATH)/bin'
 
-  - bash:
+  - bash: |
       #!/usr/bin/env bash
       go version
       echo "install path" 
@@ -34,7 +34,7 @@ steps:
       
     displayName: "Install goreleaser"
 
-  - bash: 
+  - bash: |
       #!/usr/bin/env bash
       cd  "$BUILD_SOURCESDIRECTORY"
       ../bin/goreleaser
