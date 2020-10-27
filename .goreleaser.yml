@@ -9,7 +9,6 @@ builds:
     # goreleaser does not work with CGO, it could also complicate
     # usage by users in CI/CD systems like Terraform Cloud where
     # they are unable to install libraries.
-    - GPG_FINGERPRINT=404BCB5E66712DE36720E0C36F0B91BDE98478CF
     - CGO_ENABLED=0
   mod_timestamp: '{{ .CommitTimestamp }}'
   flags:
