@@ -28,14 +28,6 @@ steps:
   - bash: |
       #!/usr/bin/env bash
       go version
-      echo "install path" 
-      pwd
-      curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh | sh
-      
-    displayName: "Install goreleaser"
+      echo "install path"       
+    displayName: "Env Check"
 
-  - bash: |
-      #!/usr/bin/env bash
-      cd  "$BUILD_SOURCESDIRECTORY"
-      ../bin/goreleaser
-    displayName: "build release package"
