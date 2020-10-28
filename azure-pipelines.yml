@@ -29,7 +29,7 @@ steps:
       #!/usr/bin/env bash
       go version
       echo "install path"       
-      displayName: "Env Check"
+    displayName: "Env Check"
   
   - task: EsrpCodeSigning@1
     inputs:
