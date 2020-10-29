@@ -3,11 +3,29 @@
 # Add steps that test, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/go
 
+parameters:
+  - name: goos
+    type: string
+    values: 
+      - freebsd
+      - windows
+      - linux
+      # - darwin
+
+  - name: goarch
+    type: string
+    values: 
+      - amd64
+      - '386'
+      - arm
+      - arm64
+
 trigger:
 - master
 
 pool:
   vmImage: 'ubuntu-latest'
+
 
 variables:
   goVersion: 1.14.7
