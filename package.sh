@@ -51,9 +51,7 @@ function release() {
     )
   done
   mv *.zip ${BUILD_DIR}
-
   cd ${BUILD_DIR}
-  ls -al
   shasum -a 256 *.zip > "${BUILD_ARTIFACT}_SHA256SUMS"
   cat "${BUILD_ARTIFACT}_SHA256SUMS"
   ls -al
