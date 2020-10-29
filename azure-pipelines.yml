@@ -38,6 +38,7 @@ jobs:
     displayName: "Build Packages"
     env:
       VERSION: $(VERSION)
+
   - task: GitHubRelease@1
     inputs:
       gitHubConnection: 'GITHUB_REPO'
