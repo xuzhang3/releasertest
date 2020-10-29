@@ -3,27 +3,10 @@
 # Add steps that test, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/go
 
-parameters:
-  - name: goos
-    type: string
-    values: 
-      - freebsd
-      - windows
-      - linux
-      - darwin
-  - name: goarch
-    type: string
-    values: 
-      - amd64
-      - '386'
-      - arm
-      - arm64
-
 jobs:
-  - job: Release
-    displayName: 'Package: '
-  trigger:
-  - master
+
+- job: Release
+  displayName: 'Package: '
 
   # Build on each combination of supported OS and Go version
   strategy:
@@ -47,7 +30,6 @@ jobs:
     modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)' # Path to the module's code
 
   steps:
-
     - task: GoTool@0
       displayName: 'Install correct version of Go'
       inputs:
