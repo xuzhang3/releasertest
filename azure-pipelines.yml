@@ -8,19 +8,8 @@ jobs:
 - job: Release
   displayName: 'Package: '
 
-  # Build on each combination of supported OS and Go version
-  strategy:
-    maxParallel: 1
-    matrix:
-      ${{ each goos in parameters.goos }}:
-        ${{ each goarch in parameters.goarch }}:
-          OS_${{ goos }}_GO_${{ goarch.goarch }}:
-            goos: ${{ goos.value }}
-            goarch: ${{ goarch.value }}
-
   pool:
     vmImage: 'ubuntu-latest'
-
 
   variables:
     goVersion: 1.14.7
