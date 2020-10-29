@@ -36,6 +36,7 @@ jobs:
       #!/usr/bin/env bash
       ./release.sh
     displayName: "Build Packages"
+    env VERSION: $(VERSION)
 
 #
 #    - task: EsrpCodeSigning@1

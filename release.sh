@@ -6,7 +6,6 @@ SCRIPTS_DIR="$(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BUILD_DIR="${SCRIPTS_DIR}/dist/"
 SOURCE_DIR="${SCRIPTS_DIR}/"
 NAME="azuredevops"
-VERSION=$(git tag | sort -V | tail -1)
 BUILD_ARTIFACT="terraform-provider-${NAME}_${VERSION}"
 
 
