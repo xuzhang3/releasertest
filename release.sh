@@ -30,7 +30,7 @@ function release() {
   for os_arch in "${OS_ARCH[@]}" ; do
     KEY=${os_arch%%:*}
     VALUE=${os_arch#*:}
-    printf "%s likes to %s.\n" "$KEY" "$VALUE"
+    info "$KEY-$VALUE"
   done
 #
 #  BUILD_ARTIFACT="terraform-provider-${NAME}_v${VERSION}"
