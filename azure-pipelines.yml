@@ -38,7 +38,15 @@ jobs:
     displayName: "Build Packages"
     env:
       VERSION: $(VERSION)
-
+  - task: GitHubRelease@1
+    inputs:
+      gitHubConnection: 'GITHUB_REPO'
+      repositoryName: '$(Build.Repository.Name)'
+      action: 'create'
+      target: '$(Build.SourceVersion)'
+      tagSource: 'gitTag'
+      changeLogCompareToRelease: 'lastFullRelease'
+      changeLogType: 'commitBased'
 #
 #    - task: EsrpCodeSigning@1
 #      inputs:
