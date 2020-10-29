@@ -10,8 +10,7 @@ parameters:
       - freebsd
       - windows
       - linux
-      # - darwin
-
+      - darwin
   - name: goarch
     type: string
     values: 
@@ -19,74 +18,95 @@ parameters:
       - '386'
       - arm
       - arm64
-
-trigger:
-- master
-
-pool:
-  vmImage: 'ubuntu-latest'
+  maxParallel: 1
 
 
-variables:
-  goVersion: 1.14.7
-  GOBIN:  '$(GOPATH)/bin' # Go binaries path
-  GOROOT: '/usr/local/go' # Go installation path
-  GOPATH: '$(system.defaultWorkingDirectory)/gopath' # Go workspace path
-  modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)' # Path to the module's code
+jobs:
+  - job: Release
+    displayName: 'Package: '
+  trigger:
+  - master
 
-steps:
+  # Build on each combination of supported OS and Go version
+  strategy:
+    maxParallel: ${{ parameters.maxParallel }}
+    matrix:
+      ${{ each goos in parameters.goos }}:
+        ${{ each goarch in parameters.goarch }}:
+          OS_${{ goos }}_GO_${{ goarch.goarch }}:
+            goos: ${{ goos.value }}
+            goarch: ${{ goarch.value }}
 
-  - task: GoTool@0
-    displayName: 'Install correct version of Go'
-    inputs:
-      version: $(goVersion)
-      GOPATH: '$(Pipeline.Workspace)/gopath'
-      GOBIN:  '$(GOPATH)/bin'
+  pool:
+    vmImage: 'ubuntu-latest'
 
-  - bash: |
-      #!/usr/bin/env bash
-      go version
-      echo "install path"       
-    displayName: "Env Check"
-  
-  - task: EsrpCodeSigning@1
-    inputs:
-      ConnectedServiceName: 'ADO release'
-      FolderPath: '$BUILD_SOURCESDIRECTORY'
-      Pattern: '*.txt'
-      signConfigType: 'inlineSignParams'
-      inlineOperation: |
-        [
-          {
-            "keyCode": "CP-461163",
-            "operationSetCode": "SigntoolSign",
-            "parameters": [
-              {
-                "parameterName": "OpusName",
-                "parameterValue": "Microsoft"
-              },
-              {
-                "parameterName": "OpusInfo",
-                "parameterValue": "http://www.microsoft.com"
-              },
-              {
-                "parameterName": "PageHash",
-                "parameterValue": "/NPH"
-              },
-              {
-                "parameterName": "FileDigest",
-                "parameterValue": "/fd sha256"
-              },
-              {
-                "parameterName": "TimeStamp",
-                "parameterValue": "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
-              }
-            ],
-            "toolName": "signtool.exe",
-            "toolVersion": "6.2.9304.0"
-          }
-        ]
-      SessionTimeout: '60'
-      MaxConcurrency: '50'
-      MaxRetryAttempts: '5'
+
+  variables:
+    goVersion: 1.14.7
+    GOBIN:  '$(GOPATH)/bin' # Go binaries path
+    GOROOT: '/usr/local/go' # Go installation path
+    GOPATH: '$(system.defaultWorkingDirectory)/gopath' # Go workspace path
+    modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)' # Path to the module's code
+
+  steps:
+
+    - task: GoTool@0
+      displayName: 'Install correct version of Go'
+      inputs:
+        version: $(goVersion)
+        GOPATH: '$(Pipeline.Workspace)/gopath'
+        GOBIN:  '$(GOPATH)/bin'
+
+    - bash: |
+        #!/usr/bin/env bash
+        go version
+        echo "install path $(pwd)"
+      displayName: "Environment Check"
+
+    - bash: |
+        #!/usr/bin/env bash
+        ./release.sh
+      displayName: "Build Packages"
+
+#
+#    - task: EsrpCodeSigning@1
+#      inputs:
+#        ConnectedServiceName: 'ADO release'
+#        FolderPath: '$BUILD_SOURCESDIRECTORY'
+#        Pattern: '*.txt'
+#        signConfigType: 'inlineSignParams'
+#        inlineOperation: |
+#          [
+#            {
+#              "keyCode": "CP-461163",
+#              "operationSetCode": "SigntoolSign",
+#              "parameters": [
+#                {
+#                  "parameterName": "OpusName",
+#                  "parameterValue": "Microsoft"
+#                },
+#                {
+#                  "parameterName": "OpusInfo",
+#                  "parameterValue": "http://www.microsoft.com"
+#                },
+#                {
+#                  "parameterName": "PageHash",
+#                  "parameterValue": "/NPH"
+#                },
+#                {
+#                  "parameterName": "FileDigest",
+#                  "parameterValue": "/fd sha256"
+#                },
+#                {
+#                  "parameterName": "TimeStamp",
+#                  "parameterValue": "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+#                }
+#              ],
+#              "toolName": "signtool.exe",
+#              "toolVersion": "6.2.9304.0"
+#            }
+#          ]
+#        SessionTimeout: '60'
+#        MaxConcurrency: '50'
+#        MaxRetryAttempts: '5'
 
