@@ -19,23 +19,23 @@ jobs:
     modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)' # Path to the module's code
 
   steps:
-    - task: GoTool@0
-      displayName: 'Install correct version of Go'
-      inputs:
-        version: $(goVersion)
-        GOPATH: '$(Pipeline.Workspace)/gopath'
-        GOBIN:  '$(GOPATH)/bin'
+  - task: GoTool@0
+    displayName: 'Install correct version of Go'
+    inputs:
+      version: $(goVersion)
+      GOPATH: '$(Pipeline.Workspace)/gopath'
+      GOBIN:  '$(GOPATH)/bin'
 
-    - bash: |
-        #!/usr/bin/env bash
-        go version
-        echo "install path $(pwd)"
-      displayName: "Environment Check"
+  - bash: |
+      #!/usr/bin/env bash
+      go version
+      echo "install path $(pwd)"
+    displayName: "Environment Check"
 
-    - bash: |
-        #!/usr/bin/env bash
-        ./release.sh
-      displayName: "Build Packages"
+  - bash: |
+      #!/usr/bin/env bash
+      ./release.sh
+    displayName: "Build Packages"
 
 #
 #    - task: EsrpCodeSigning@1
