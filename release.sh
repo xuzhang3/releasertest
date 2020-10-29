@@ -28,9 +28,9 @@ function release() {
   clean
   echo $(zip --help)
   for os_arch in "${OS_ARCH[@]}" ; do
-    KEY=${OS_ARCH%%:*}
-    VALUE=${OS_ARCH#*:}
-    info "%s likes to %s.\n" "$KEY" "$VALUE"
+    KEY=${os_arch%%:*}
+    VALUE=${os_arch#*:}
+    printf "%s likes to %s.\n" "$KEY" "$VALUE"
   done
 #
 #  BUILD_ARTIFACT="terraform-provider-${NAME}_v${VERSION}"
@@ -60,4 +60,4 @@ function fatal() {
     exit 1
 }
 
-
+release
