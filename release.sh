@@ -52,7 +52,7 @@ function release() {
   ls -al ${BUILD_DIR}*.zip
   shasum -a 256 ${BUILD_DIR}*.zip > "${BUILD_DIR}${BUILD_ARTIFACT}_SHA256SUMS"
   cat "${BUILD_DIR}${BUILD_ARTIFACT}_SHA256SUMS"
-  ls -al ${BUILD_DIR}*.zip
+  ls -al ${BUILD_DIR}*.*
 
 }
 
