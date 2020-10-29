@@ -50,9 +50,9 @@ function release() {
 #      tar -cf "${BUILD_DIR}${BUILD_ARTIFACT}_${OS}_${ARCH}.tar" "${BUILD_DIR}${BUILD_ARTIFACT}"
     )
   done
-  ls -al ${BUILD_DIR}/*.tar
-  shasum -a 256 ${BUILD_DIR}/*.tar > "./dist/${BUILD_ARTIFACT}_SHA256SUMS"
-  ls -al ${BUILD_DIR}/*.tar
+  ls -al ${BUILD_DIR}*.tar
+  shasum -a 256 ${BUILD_DIR}*.tar > "./dist/${BUILD_ARTIFACT}_SHA256SUMS"
+  ls -al ${BUILD_DIR}*.tar
 
 }
 
