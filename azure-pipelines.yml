@@ -34,7 +34,7 @@ jobs:
 
   - bash: |
       #!/usr/bin/env bash
-      ./release.sh
+      ./package.sh
     displayName: "Build Packages"
     env:
       VERSION: $(VERSION)
