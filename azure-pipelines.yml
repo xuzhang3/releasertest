@@ -18,8 +18,6 @@ parameters:
       - '386'
       - arm
       - arm64
-  maxParallel: 1
-
 
 jobs:
   - job: Release
@@ -29,7 +27,7 @@ jobs:
 
   # Build on each combination of supported OS and Go version
   strategy:
-    maxParallel: ${{ parameters.maxParallel }}
+    maxParallel: 1
     matrix:
       ${{ each goos in parameters.goos }}:
         ${{ each goarch in parameters.goarch }}:

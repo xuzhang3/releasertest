@@ -24,6 +24,8 @@ function clean() {
 }
 
 function release() {
+  echo "Clean build directory"
+  clean
   echo $(zip --help)
   for os_arch in "${OS_ARCH[@]}" ; do
     KEY=${OS_ARCH%%:*}
