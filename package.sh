@@ -44,12 +44,14 @@ function release() {
     ARCH=${os_arch#*:}
     info "GOOS: ${OS}, GOARCH: ${ARCH}"
     (
-      env GOOS="${OS}" GOARCH="${ARCH}" go build -o "${BUILD_DIR}${BUILD_ARTIFACT}"
-      zip -r -j "${BUILD_DIR}${BUILD_ARTIFACT}_${OS}_${ARCH}.zip" "${BUILD_DIR}${BUILD_ARTIFACT}"
-#      tar -cf "${BUILD_DIR}${BUILD_ARTIFACT}_${OS}_${ARCH}.tar" "${BUILD_DIR}${BUILD_ARTIFACT}"
-      rm -rf ${BUILD_DIR}${BUILD_ARTIFACT}
+      env GOOS="${OS}" GOARCH="${ARCH}" go build -o "${BUILD_ARTIFACT}"
+      zip "${BUILD_ARTIFACT}_${OS}_${ARCH}.zip" "${BUILD_ARTIFACT}"
+#      tar -cf "${BUILD_ARTIFACT}_${OS}_${ARCH}.tar" "${BUILD_ARTIFACT}"
+      rm -rf ${BUILD_ARTIFACT}
     )
   done
+  mv *.zip ${BUILD_DIR}
+
   ls -al ${BUILD_DIR}*.zip
   shasum -a 256 ${BUILD_DIR}*.zip > "${BUILD_DIR}${BUILD_ARTIFACT}_SHA256SUMS"
   cat "${BUILD_DIR}${BUILD_ARTIFACT}_SHA256SUMS"
