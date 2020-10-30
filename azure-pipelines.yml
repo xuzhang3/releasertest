@@ -41,7 +41,7 @@ jobs:
 
   - task: PublishPipelineArtifact@1
     inputs:
-      targetPath: '$(Pipeline.Workspace)/dist/'
+      targetPath: '$(system.defaultWorkingDirectory)/dist/'
       artifact: 'ADO provider'
       publishLocation: 'pipeline'
   
