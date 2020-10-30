@@ -38,15 +38,17 @@ jobs:
     displayName: "Build Packages"
     env:
       VERSION: $(VERSION)
+  
   - task: GitHubRelease@1
     inputs:
       gitHubConnection: 'GITHUB_REPO'
       repositoryName: 'xuzhang3/releasertest'
       action: 'create'
-      target: '$(Build.SourceVersion)'
-      tagSource: 'gitTag'
-      tagPattern: 'v*.*.*'
+      target: '68d1c916bee5317951aa80183fc0fecc5785693d'
+      tagSource: 'userSpecifiedTag'
+      tag: '$(RELEASE_TAG)'
       assets: '$(system.defaultWorkingDirectory)/dist/*'
+      isDraft: true
       changeLogCompareToRelease: 'lastFullRelease'
       changeLogType: 'commitBased'
   
