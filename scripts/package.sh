@@ -13,16 +13,16 @@ BUILD_ARTIFACT="terraform-provider-${NAME}_${VERSION}"
 #curl --data "$API_JSON" https://api.github.com/repos/:owner/:repository/releases?access_token=:access_token
 
 OS_ARCH=("freebsd:amd64")
-#  "freebsd:386"
-#  "freebsd:arm"
-#  "freebsd:arm64"
-#  "windows:amd64"
-#  "windows:386"
-#  "linux:amd64"
-#  "linux:386"
-#  "linux:arm"
-#  "linux:arm64"
-#  "darwin:amd64")
+  "freebsd:386"
+  "freebsd:arm"
+  "freebsd:arm64"
+  "windows:amd64"
+  "windows:386"
+  "linux:amd64"
+  "linux:386"
+  "linux:arm"
+  "linux:arm64"
+  "darwin:amd64")
 
 
 function clean() {
