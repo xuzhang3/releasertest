@@ -37,7 +37,7 @@ jobs:
       ./package.sh
     displayName: "Build Packages"
     env:
-      VERSION: $(VERSION)
+      VERSION: $(RELEASE_VERSION)
   
   - task: GitHubRelease@1
     inputs:
@@ -46,12 +46,11 @@ jobs:
       action: 'create'
       target: '68d1c916bee5317951aa80183fc0fecc5785693d'
       tagSource: 'userSpecifiedTag'
-      tag: '$(RELEASE_TAG)'
+      tag: '$(RELEASE_VERSION)'
       assets: '$(system.defaultWorkingDirectory)/dist/*'
-      isDraft: true
       changeLogCompareToRelease: 'lastFullRelease'
       changeLogType: 'commitBased'
-  
+
 #
 #    - task: EsrpCodeSigning@1
 #      inputs:
