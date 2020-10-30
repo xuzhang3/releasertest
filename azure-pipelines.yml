@@ -48,8 +48,10 @@ jobs:
       tagSource: 'userSpecifiedTag'
       tag: '$(RELEASE_VERSION)'
       assets: '$(system.defaultWorkingDirectory)/dist/*'
-      changeLogCompareToRelease: 'lastFullRelease'
-      changeLogType: 'commitBased'
+      isDraft: true
+      addChangeLog: false
+      # changeLogCompareToRelease: 'lastFullRelease'
+      # changeLogType: 'commitBased'
 
 #
 #    - task: EsrpCodeSigning@1
