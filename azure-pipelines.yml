@@ -38,6 +38,12 @@ jobs:
     displayName: "Build Packages"
     env:
       VERSION: $(RELEASE_VERSION)
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/dist/'
+      ArtifactName: 'ADO-provider'
+      publishLocation: 'Container'
   
   # - task: GitHubRelease@1
   #   inputs:
