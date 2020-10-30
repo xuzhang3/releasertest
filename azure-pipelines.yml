@@ -38,6 +38,12 @@ jobs:
     displayName: "Build Packages"
     env:
       VERSION: $(RELEASE_VERSION)
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: '$(Pipeline.Workspace)/dist/'
+      artifact: 'ADO provider'
+      publishLocation: 'pipeline'
   
   # - task: GitHubRelease@1
   #   inputs:
