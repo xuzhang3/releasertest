@@ -1,0 +1,30 @@
+trigger:
+  branches:
+    include:
+    - 'master'
+
+  paths:
+    exclude:
+      - '/**/*.md'
+      - '/**/*.markdown'
+      - '/**/*.erb'
+
+pr:
+  branches:
+    include:
+    - '*'
+
+  paths:
+    exclude:
+      - '/**/*.md'
+
+jobs:
+- template: ./ci.yml
+  parameters:
+    goVersions:
+    - value: '1.13.11'
+      ymlSafeName: '1_13_11'
+
+    vmImages:
+    - value: 'ubuntu-16.04'
+      ymlSafeName: ubuntu_16_04
