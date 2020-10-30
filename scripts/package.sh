@@ -3,8 +3,8 @@
 set -euo pipefail
 
 SCRIPTS_DIR="$(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-BUILD_DIR="${SCRIPTS_DIR}/dist/"
-SOURCE_DIR="${SCRIPTS_DIR}/"
+BUILD_DIR="${SCRIPTS_DIR}/../dist/"
+SOURCE_DIR="${SCRIPTS_DIR}/../"
 NAME="azuredevops"
 BUILD_ARTIFACT="terraform-provider-${NAME}_${VERSION}"
 
