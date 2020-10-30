@@ -34,24 +34,24 @@ jobs:
 
   - bash: |
       #!/usr/bin/env bash
-      ./package.sh
+      ./scripts/package.sh
     displayName: "Build Packages"
     env:
       VERSION: $(RELEASE_VERSION)
   
-  - task: GitHubRelease@1
-    inputs:
-      gitHubConnection: 'GITHUB_REPO'
-      repositoryName: 'xuzhang3/releasertest'
-      action: 'create'
-      target: '$(COMMIT_LOG)'
-      tagSource: 'userSpecifiedTag'
-      tag: '$(RELEASE_VERSION)'
-      assets: '$(system.defaultWorkingDirectory)/dist/*'
-      isDraft: true
-      addChangeLog: false
-      # changeLogCompareToRelease: 'lastFullRelease'
-      # changeLogType: 'commitBased'
+  # - task: GitHubRelease@1
+  #   inputs:
+  #     gitHubConnection: 'GITHUB_REPO'
+  #     repositoryName: 'xuzhang3/releasertest'
+  #     action: 'create'
+  #     target: '$(COMMIT_LOG)'
+  #     tagSource: 'userSpecifiedTag'
+  #     tag: '$(RELEASE_VERSION)'
+  #     assets: '$(system.defaultWorkingDirectory)/dist/*'
+  #     isDraft: true
+  #     addChangeLog: false
+  #     # changeLogCompareToRelease: 'lastFullRelease'
+  #     # changeLogType: 'commitBased'
 
 #
 #    - task: EsrpCodeSigning@1
