@@ -5,7 +5,7 @@
 
 jobs:
 
-- job: Release
+- job: Package
   displayName: 'Package: '
 
   pool:
