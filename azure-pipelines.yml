@@ -41,8 +41,8 @@ jobs:
 
   - task: PublishPipelineArtifact@1
     inputs:
-      targetPath: '$(Pipeline.Workspace)/dist/'
-      artifact: 'ADO provider'
+      targetPath: '$(system.defaultWorkingDirectory)/dist/'
+      artifact: 'ADOPackages'
       publishLocation: 'pipeline'
   
   # - task: GitHubRelease@1
