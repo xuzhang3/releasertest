@@ -44,12 +44,14 @@ jobs:
       gitHubConnection: 'GITHUB_REPO'
       repositoryName: 'xuzhang3/releasertest'
       action: 'create'
-      target: '68d1c916bee5317951aa80183fc0fecc5785693d'
+      target: '$(COMMIT_LOG)'
       tagSource: 'userSpecifiedTag'
       tag: '$(RELEASE_VERSION)'
       assets: '$(system.defaultWorkingDirectory)/dist/*'
-      changeLogCompareToRelease: 'lastFullRelease'
-      changeLogType: 'commitBased'
+      isDraft: true
+      addChangeLog: false
+      # changeLogCompareToRelease: 'lastFullRelease'
+      # changeLogType: 'commitBased'
 
 #
 #    - task: EsrpCodeSigning@1
