@@ -44,7 +44,7 @@ jobs:
       gitHubConnection: 'GITHUB_REPO'
       repositoryName: 'xuzhang3/releasertest'
       action: 'create'
-      target: 'fe95dc1edfc1b074d720148be2c0d732f24b0ce5'
+      target: '$(COMMIT_LOG)'
       tagSource: 'userSpecifiedTag'
       tag: '$(RELEASE_VERSION)'
       assets: '$(system.defaultWorkingDirectory)/dist/*'
