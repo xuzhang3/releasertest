@@ -39,11 +39,11 @@ jobs:
     env:
       VERSION: $(RELEASE_VERSION)
 
-  - task: PublishBuildArtifacts@1
+  - task: PublishPipelineArtifact@1
     inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)/dist/'
-      ArtifactName: 'ADO-provider'
-      publishLocation: 'Container'
+      targetPath: '$(Pipeline.Workspace)/dist/'
+      artifact: 'ADO provider'
+      publishLocation: 'pipeline'
   
   # - task: GitHubRelease@1
   #   inputs:
