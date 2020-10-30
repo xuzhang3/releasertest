@@ -42,7 +42,7 @@ jobs:
   - task: PublishPipelineArtifact@1
     inputs:
       targetPath: '$(system.defaultWorkingDirectory)/dist/'
-      artifact: 'ADO provider'
+      artifact: 'ADOPackages'
       publishLocation: 'pipeline'
   
   # - task: GitHubRelease@1
