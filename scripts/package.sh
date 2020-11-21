@@ -25,7 +25,8 @@ OS_ARCH=(#"freebsd:amd64"
 #  "linux:386"
 #  "linux:arm"
 #  "linux:arm64"
-  "darwin:amd64")
+#"darwin:amd64"
+  )
 
 
 function clean() {
@@ -58,6 +59,8 @@ function release() {
   cp "${ARCHIVE_ARTIFACT}_SHA256SUMS" "${ARCHIVE_ARTIFACT}_SHA256SUMS.sig"
   cat "${ARCHIVE_ARTIFACT}_SHA256SUMS"
   ls -al
+
+  cp ../scripts/deamor.sh ./
 
 }
 
