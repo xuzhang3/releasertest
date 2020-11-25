@@ -1,3 +1,10 @@
+--- 
+NOTE
+ 
+Test Test Important: this plugin is retired. Azure Dev Spaces is being retired and will stop working on October 31, 2023. 
+
+---
+
 # Terraform Provider for Azure DevOps (Devops Resource Manager)
 
 [![Gitter](https://badges.gitter.im/terraform-provider-azuredevops/community.svg)](https://gitter.im/terraform-provider-azuredevops/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
