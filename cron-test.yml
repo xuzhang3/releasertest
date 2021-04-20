@@ -4,8 +4,7 @@ schedules:
   branches:
     include:
     - master
-    - test
-  always: false
+  always: true
 
 trigger: none
 pr: none
