@@ -5,7 +5,7 @@ schedules:
     include:
     - master
     - test
-  always: true
+  always: false
 
 trigger: none
 pr: none
